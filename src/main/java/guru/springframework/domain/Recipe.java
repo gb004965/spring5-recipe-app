@@ -21,31 +21,23 @@ public class Recipe {
     private String url;
     private String directions;
 
-    // TODO - Educational Notes
-    /**
-     * We want Recipe to own the relationship
-     * so, we add cascade type 'ALL'
-     * and add mappedBy - mapping to the child class
-     * this tells hibernate this set of ingredients to be stored
-     * in a property on the child class (Ingredient) call 'recipe'
-    **/
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
     @Lob
     private Byte[] image;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notes notes;
 
     @ManyToMany
     @JoinTable(name = "recipe_category",
         joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Notes notes;
 
     public Long getId() {
         return id;

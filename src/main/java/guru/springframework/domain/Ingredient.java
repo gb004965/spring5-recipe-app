@@ -3,6 +3,9 @@ package guru.springframework.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Created by jt on 6/13/17.
+ */
 @Entity
 public class Ingredient {
 
@@ -12,31 +15,18 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    /**
-     * We do not add a cascade on this side of the relationship
-     * because we do not want a delete of an ingredient to
-     * cascade and delete a recipe.
-     */
-    @ManyToOne
-    private Recipe recipe;
-
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
 
-    public UnitOfMeasure getUom() {
-        return uom;
-    }
+    @ManyToOne
+    private Recipe recipe;
 
-    public void setUom(UnitOfMeasure uom) {
-        this.uom = uom;
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getDescription() {
@@ -61,5 +51,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
