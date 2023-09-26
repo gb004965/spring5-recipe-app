@@ -52,7 +52,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.24</version>
-<!--		Added in latest version of lombok to get working!-->
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7-1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
